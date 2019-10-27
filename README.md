@@ -1,6 +1,6 @@
 # clown
 
-[![Product Name](image.png)](https://www.youtube.com/watch?v=G5rULR53uMk)
+[![Product Name](image.png)](https://youtu.be/eon05fMj6-0)
 
 ## 製品概要
 ### 教育 X Tech
