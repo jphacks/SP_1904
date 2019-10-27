@@ -9,6 +9,8 @@
 <script type="text/javascript" src="script.js"></script>
 <title>main</title>
 <link rel="stylesheet" href="main.css">
+<style type="text/css">
+</style>
 </head>
 <body>
 
@@ -31,6 +33,54 @@
 		</div>
 	</div>
 
+
+	<!-- コメントが記述される -->
+	<div id="contents_migi_ue">
+		<p id="content">
+			<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<button id="btn">start</button>
+	<div id="content"></div>
+	<script>
+		const speech = new webkitSpeechRecognition();
+		speech.lang = 'ja-JP';
+		const btn = document.getElementById('btn');
+		const content = document.getElementById('content');
+		btn.addEventListener('click', function() {
+			speech.start();
+		});
+
+		speech.onresult = function(e) {
+			speech.stop();
+			if (e.results[0].isFinal) {
+				var autotext = e.results[0][0].transcript;
+				console.log(e);
+				console.log(autotext);
+				content.innerHTML += '<div>'+ "入力文字列:" + autotext +'</div>';
+				$
+				.ajax(
+						{
+							type : 'POST',
+							url : 'https://labs.goo.ne.jp/api/morph',
+							data : {
+								"app_id" : "c1fef044fb2edbf10657f15dcab2ee786e0e12878c7309fd90105662407e6a5c",
+								"sentence" : autotext,
+								"info_filter" : "form"
+							}
+						}).then(
+						function(response) {
+							let data = response.word_list;
+							console.log(response);
+							content.innerHTML += '<div>' + "形態素分け:" +  response.word_list
+									+ '</div>';
+						})
+			}
+		}
+		speech.onend = () =>{
+			speech.start()
+		};
+	</script>
+	</div>
 	<!-- チャット流す -->
 	<div id="contents_hidari_sita">
 		<div>
@@ -45,15 +95,10 @@
 		</div>
 		<!-- <p class="chat">チャット</p> -->
 	</div>
-
-	<!-- コメントが記述される -->
-	<div id="contents_migi_ue">
-		<p id="content"></p>
-	</div>
-
 	<!-- ウィキペディアを参照する -->
 	<div id="contents_migi_sita">
-		<p class="wiki">wikipedia</p>
+		
+		<iframe src="https://ja.wikipedia.org/wiki/ゴリラ" width="100%" height = "100%"><iframe>
 	</div>
 
 	<!-- 先生のコメントログ部分スクリプト -->

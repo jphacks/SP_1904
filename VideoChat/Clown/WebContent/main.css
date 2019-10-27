@@ -33,7 +33,6 @@ body{
 
 
 #contents_hidari_sita {
-	margin-top:30px;
 	margin-left:30px;
 	float:left;
 	paddig:15px;
@@ -41,8 +40,9 @@ body{
 	border-style:dotted;
 	border-width:7px;
 	border-color:#0099cc;
-	width:40%;
+	width:20%;
 	max-height:510px;
+	overflow: auto;
 }
 
 #contents_migi_sita {
@@ -54,8 +54,8 @@ body{
 	border-style:dotted;
 	border-width:7px;
 	border-color:#ffccff;
-	width:40%;
-	height:50px;
+	width:90%;
+	height:200px;
 	
 }
 
