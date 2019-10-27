@@ -1,0 +1,68 @@
+@charset "UTF-8";
+
+body{
+	background-image:url("../doubutunomori.jpg");
+	background-size:cover;
+}
+
+#contents_hidari_ue {
+	margin-left:30px;
+	float:left;
+	paddig:15px;
+	background:#ffff99;
+	border-style:dotted;
+	border-width:7px;
+	border-color:#ff0099;
+	width:640px;
+	max-height:510px;
+
+}
+
+#contents_migi_ue {
+	margin-left:50px;
+	float:left;
+	background:#66ffff;
+	border-style:dotted;
+	border-width:7px;
+	border-color:#33cc33;
+	width:20%;
+	height:510px;
+	max-height:510px;
+	overflow: auto;
+}
+
+
+#contents_hidari_sita {
+	margin-top:30px;
+	margin-left:30px;
+	float:left;
+	paddig:15px;
+	background:#00ffcc;
+	border-style:dotted;
+	border-width:7px;
+	border-color:#0099cc;
+	width:40%;
+	max-height:510px;
+}
+
+#contents_migi_sita {
+	margin-top:30px;
+	margin-right:30px;
+	float:left;
+	paddig:15px;
+	background:#ffffcc;
+	border-style:dotted;
+	border-width:7px;
+	border-color:#ffccff;
+	width:40%;
+	height:50px;
+	
+}
+
+p {
+	text-align:center;
+}
+p.comment {
+	overflow:hidden;
+}
+

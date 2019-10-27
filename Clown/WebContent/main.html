@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript"
+	src="https://cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
+<script type="text/javascript" src="script.js"></script>
+<title>main</title>
+<link rel="stylesheet" href="main.css">
+</head>
+<body>
+
+	<!-- 映像移映すとこ -->
+	<div id="contents_hidari_ue">
+		<div class="pure-g">
+
+			<!-- Video area -->
+			<div class="pure-u-2-3" id="video-container">
+				<video id="my-video" muted="true" autoplay playsinline></video>
+			</div>
+
+			<!-- Steps -->
+			<div class="pure-u-1-3">
+				<div class="select">
+					<label for="audioSource">Please select Microphone: </label><select
+						id="audioSource" autofocus></select>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- チャット流す -->
+	<div id="contents_hidari_sita">
+		<div>
+			<div>
+				<input type="text" id="username">
+			</div>
+			<div>
+				<textarea id="text" rows="5"></textarea>
+				<button id="send">send</button>
+			</div>
+			<div id="output"></div>
+		</div>
+		<!-- <p class="chat">チャット</p> -->
+	</div>
+
+	<!-- コメントが記述される -->
+	<div id="contents_migi_ue">
+		<p id="content"></p>
+	</div>
+
+	<!-- ウィキペディアを参照する -->
+	<div id="contents_migi_sita">
+		<p class="wiki">wikipedia</p>
+	</div>
+
+	<!-- 先生のコメントログ部分スクリプト -->
+	<!-- <button id="btn">start</button>  -->
+	<script>
+		//var xhr = new XMLHttpRequest();
+		//xhr.open('POST', 'https://labs.goo.ne.jp/api/morph');
+		const speech = new webkitSpeechRecognition();
+		speech.lang = 'ja-JP';
+		const btn = document.getElementById('btn');
+		const content = document.getElementById('content');
+		speech.start();	//開いた時点でスタートするか、まだ試験段階。
+		speech.onresult = function(e) {
+			speech.stop();
+			if (e.results[0].isFinal) {
+				var autotext = e.results[0][0].transcript;
+				console.log(e);
+				console.log(autotext);
+				content.innerHTML += '<div>'+ autotext +'</div>';
+			}
+		}
+
+		speech.onend = () =>{
+			speech.start()
+		};
+	</script>
+
+	<!-- チャット部分スクリプト -->
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
+	<script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-auth.js"></script>
+	<script
+		src="https://www.gstatic.com/firebasejs/7.2.1/firebase-database.js"></script>
+
+	<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+	<script
+		src="https://www.gstatic.com/firebasejs/7.2.1/firebase-analytics.js"></script>
+
+	<script>
+		// Your web app's Firebase configuration
+		var firebaseConfig = {
+			apiKey : "AIzaSyDOyW82YtMQDskzJeO03pmgzHJT9OGFLJE",
+			authDomain : "chatapp-f308f.firebaseapp.com",
+			databaseURL : "https://chatapp-f308f.firebaseio.com",
+			projectId : "chatapp-f308f",
+			storageBucket : "chatapp-f308f.appspot.com",
+			messagingSenderId : "289735766678",
+			appId : "1:289735766678:web:59006ba79b5d00d46cc8b7",
+			measurementId : "G-FWVY4HM3DB"
+		};
+		// Initialize Firebase
+		firebase.initializeApp(firebaseConfig);
+		firebase.analytics();
+
+		const newPostRef = firebase.database();
+		let room = "room1";
+
+		const send = document.getElementById("send");
+		const username = document.getElementById("username");
+		const text = document.getElementById("text");
+		const output = document.getElementById("output");
+
+		send.addEventListener('click', function() {
+			newPostRef.ref(room).push({
+				username : username.value,
+				text : text.value
+			});
+			text.value = "";
+		});
+
+		newPostRef.ref(room).on("child_added", function(data) {
+			const v = data.val();
+			const k = data.key;
+			let str = "";
+
+			str += '<div class="name">' + v.username + '</div>';
+			str += '<div class="text">' + v.text + '</div>';
+
+			output.innerHTML += str;
+		});
+	</script>
+</body>
+</html>

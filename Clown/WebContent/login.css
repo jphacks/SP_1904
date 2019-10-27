@@ -1,0 +1,51 @@
+@charset "UTF-8";
+
+h1 {
+	margin-top:20px;
+	font-size:large;
+	color:#7CAD6;
+}
+dl dt {
+	border-left:5px solid #7CAD6;
+	border-bottom:1px solid #7CAD6;
+	font-size:small;
+	margin:0;
+	padding:5px;
+}
+dl dt span{
+	color:red;
+	font-weight:bold;
+}
+dl dd {
+	font-size:small;
+	margin:0;
+	padding:10px;
+}
+dl dd input {
+	z-inde:2;
+}
+dl dd label {
+	position:relative;
+	padding:5px 5px 5px 25px;
+	margin : 0 5px 0 -25px;
+	margin-left:-25px;
+	position:relative;
+	z-index:1;
+}
+dl dd.error input ,
+dl dd.error textarea ,
+dl dd.error label {
+	background:#FFCCCC;
+}
+* html dl dd.error label {
+	background:none;
+}
+*+html dl dd.error label{
+	background:none;
+}
+dl dd p.error{
+	margin:0;
+	color:red;
+	font-weight:bold;
+	margin-bottom:lem;
+}

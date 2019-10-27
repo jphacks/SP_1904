@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ログイン</title>
+<script src="./jquery-ui.min.js"></script>
+<script src="login.js"></</script>
+<link rel="stylesheet" href="login.css">
+</head>
+<body>
+ <h1>ログイン</h1>
+ <form action="login.html" method="post">
+   <dl>
+     <dt> 名前 <span> ※ </span></dt>
+     <dd><input type="text" name="name" size="80" class="validate required"></dd>
+     <dt> フリガナ </dt>
+     <dd><input type="text" name="furigana" size="80"></dd>
+     <dt> ニックネーム </dt>
+     <dd><input type="text" name="adana" size="80"></dd>
+     <dt> PASSWORD <span> ※ </span></dt>
+     <dd><input type="text" name="pass" size="10" maxlength="10" class="validate required"></dd>
+     <dt> 性別 <span> ※ </span></dt>
+     <dd><input type="radio" value=" 男性 " name="gender" id="man" class="validate required">
+     	 <label for="man"> 	男性 </label>
+     	 <input type="radio" value=" 女性 " name="gender" id="woman" class="validate required">
+     	 <label for="woman"> 女性 </label>
+     </dd>
+   </dl>
+  </form>
+</body>
+</html>
